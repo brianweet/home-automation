@@ -1,0 +1,8 @@
+{
+  "cmd": "heartbeat",
+  "model": "gateway",
+  "sid": "34ce00fb613d",
+  "short_id": "0",
+  "token": "L7jEdsoGVxtqFGSl",
+  "data": "{\"ip\":\"192.168.0.100\"}"
+}

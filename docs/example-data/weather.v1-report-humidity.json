@@ -1,0 +1,7 @@
+{
+  "cmd": "report",
+  "model": "weather.v1",
+  "sid": "158d000201b0e5",
+  "short_id": 63210,
+  "data": "{\"humidity\":\"5852\"}"
+}

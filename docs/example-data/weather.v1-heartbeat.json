@@ -1,0 +1,7 @@
+{
+  "cmd": "heartbeat",
+  "model": "weather.v1",
+  "sid": "158d000201b2f6",
+  "short_id": 5336,
+  "data": "{\"voltage\":2975,\"temperature\":\"1873\",\"humidity\":\"7797\",\"pressure\":\"101068\"}"
+}
