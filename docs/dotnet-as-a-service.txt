@@ -1,0 +1,57 @@
+cat > xiaomilistenersvc.service <<EOF
+[Unit]
+Description=Xiaomi listener service
+Wants=network.target
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/dotnet $(pwd)/bin/XiaomiListener.dll 5000
+Restart=on-failure
+User=pi
+Group=pi
+# Use SIGINT to stop
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# Copy service file to a System location
+sudo cp xiaomilistenersvc.service /lib/systemd/system
+
+# Reload SystemD and enable the service, so it will restart on reboots
+sudo systemctl daemon-reload 
+sudo systemctl enable xiaomilistenersvc
+
+# Start service
+sudo systemctl start xiaomilistenersvc 
+
+# View service status
+systemctl status xiaomilistenersvc
+
+journalctl --unit xiaomilistenersvc --follow
+
+# Stop service
+sudo systemctl stop xiaomilistenersvc 
+systemctl status xiaomilistenersvc 
+
+# Restart the service
+sudo systemctl start xiaomilistenersvc 
+systemctl status xiaomilistenersvc
+
+# Ensure service is stopped
+sudo systemctl stop xiaomilistenersvc 
+
+# Disable
+sudo systemctl disable xiaomilis
+
+# Remove and reload SystemD
+sudo rm xiaomilistenersvc.service /lib/systemd/system/xiaomilistenersvc.service 
+sudo systemctl daemon-reload 
+
+# Verify SystemD is no longer aware of the service - Empty is what we want here
+systemctl --type service |& grep xiaomilistenersvc
+
+
+# Check port usage:
+sudo lsof -i :9898

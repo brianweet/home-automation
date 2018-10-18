@@ -1,0 +1,33 @@
+cat > webfan.service <<EOF
+[Unit]
+Description=Web fan webthings service
+Wants=network.target
+After=network.target
+
+[Service]
+ExecStart=/home/pi/.nvm/versions/node/v8.12.0/bin/node $(pwd)/lib/index.js
+Restart=on-failure
+User=pi
+Group=pi
+SyslogIdentifier=webfan-example
+# Use SIGINT to stop
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# Copy service file to a System location
+sudo cp webfan.service /lib/systemd/system
+
+# Reload SystemD and enable the service, so it will restart on reboots
+sudo systemctl daemon-reload 
+sudo systemctl enable webfan
+
+# Start service
+sudo systemctl start webfan
+
+# View service status
+systemctl status webfan
+
+journalctl --unit webfan --follow

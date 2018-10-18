@@ -1,8 +1,11 @@
-{
-  "cmd": "heartbeat",
-  "model": "gateway",
-  "sid": "34ce00fb613d",
-  "short_id": "0",
-  "token": "L7jEdsoGVxtqFGSl",
-  "data": "{\"ip\":\"192.168.0.100\"}"
-}
+sudo apt-get update
+sudo apt-get install -y --no-install-recommends libc6 libgcc1 libgssapi-krb5-2 libicu57 liblttng-ust0 libssl1.0.2 libstdc++6 zlib1g
+sudo rm -rf /var/lib/apt/lists/*
+
+
+sudo curl -SL --output dotnet.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/Sdk/2.1.402/dotnet-sdk-2.1.402-linux-arm.tar.gz 
+sudo mkdir -p /usr/share/dotnet
+sudo tar -zxf dotnet.tar.gz -C /usr/share/dotnet
+sudo rm dotnet.tar.gz
+sudo ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
+sudo curl -SL --output /usr/share/dotnet/sdk/2.1.402/nuGetPackagesArchive.lzma https://dotnetcli.blob.core.windows.net/dotnet/Sdk/2.1.402/nuGetPackagesArchive.lzma 
