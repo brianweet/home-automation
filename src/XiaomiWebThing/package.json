@@ -19,5 +19,7 @@
     "ts-node": "^7.0.1",
     "typescript": "^3.0.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "webthing": "^0.8.0"
+  }
 }

@@ -1,12 +1,14 @@
 const { MultipleThings, WebThingServer } = require('webthing');
-import { devices } from '../data/devices';
+import { devices } from './data/device-configuration';
 import { createWebThing } from './device-factory';
+import { XiaomiSocketListener } from './socket-listener';
 
 const thingsName = 'XiaomiGatewayHub';
 const webThingPort = 8889;
 
 function runServer() {
-    const webthings = devices.map(createWebThing).filter(x => x != null);
+    const socketListener = new XiaomiSocketListener();
+    const webthings = devices.map(createWebThing(socketListener)).filter(x => x != null);
     const webThingServer = new WebThingServer(
         new MultipleThings(webthings, thingsName),
         webThingPort
