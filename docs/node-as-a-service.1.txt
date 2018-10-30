@@ -26,6 +26,7 @@ sudo systemctl enable xiaomiwebthing
 
 # Start service
 sudo systemctl start xiaomiwebthing
+sudo systemctl stop xiaomiwebthing
 
 # View service status
 systemctl status xiaomiwebthing

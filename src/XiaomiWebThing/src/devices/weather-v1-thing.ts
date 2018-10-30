@@ -1,5 +1,6 @@
 import { IDeviceConfig, DeviceType } from '../data/device-configuration';
 import { EventEmitter } from 'events';
+import { IXiaomiMessage } from './xiaomi-message';
 
 const { Property, Thing, Value } = require('webthing');
 
@@ -60,7 +61,7 @@ export class WeatherV1Thing extends Thing {
         eventEmitter.on('message', this.handleMessage);
     }
 
-    handleMessage = (message: XiaomiMessage) => {
+    handleMessage = (message: IXiaomiMessage) => {
         if (message.sid !== this.deviceConfig.sid) {
             return;
         }
@@ -76,13 +77,4 @@ export class WeatherV1Thing extends Thing {
             this.voltageLevel.notifyOfExternalUpdate(newData.voltage);
         }
     };
-}
-
-interface XiaomiMessage {
-    cmd: 'heartbeat' | 'report';
-    model: DeviceType;
-    sid: string;
-    short_id: string;
-    token: string;
-    data: string;
 }

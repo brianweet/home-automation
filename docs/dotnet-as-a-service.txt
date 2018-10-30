@@ -40,10 +40,10 @@ sudo systemctl start xiaomilistenersvc
 systemctl status xiaomilistenersvc
 
 # Ensure service is stopped
-sudo systemctl stop xiaomilistenersvc 
+sudo systemctl stop xiaomilistenersvc
 
 # Disable
-sudo systemctl disable xiaomilis
+sudo systemctl disable xiaomilistenersvc
 
 # Remove and reload SystemD
 sudo rm xiaomilistenersvc.service /lib/systemd/system/xiaomilistenersvc.service 
