@@ -46,13 +46,13 @@ export class WeatherV1Thing extends Thing {
         );
         this.addProperty(
             new Property(this, propertyNames.voltage, this.voltageLevel, {
-                '@type': 'VoltageProperty',
-                label: 'Voltage',
+                '@type': 'LevelProperty',
+                label: 'Battery level',
                 type: 'number',
-                description: 'The voltage of the battery',
+                description: 'The level of the battery in millivolt',
                 minimum: 0,
-                maximum: 4,
-                unit: 'volt',
+                maximum: 4000,
+                unit: 'mV',
                 readOnly: true,
             })
         );
@@ -73,7 +73,7 @@ export class WeatherV1Thing extends Thing {
             this.temperatureLevel.notifyOfExternalUpdate(newData.temperature / 100);
         }
         if (newData.voltage) {
-            this.voltageLevel.notifyOfExternalUpdate(newData.voltage / 100);
+            this.voltageLevel.notifyOfExternalUpdate(newData.voltage);
         }
     };
 }
